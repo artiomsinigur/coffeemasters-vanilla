@@ -29,15 +29,29 @@ const Router = {
         if (addToHistory) {
             history.pushState({ route }, null, route);
         }
+
+        let pageElement = null
+        
+        switch (route) {
+            case '/':
+                pageElement = document.createElement('h1');
+                pageElement.textContent = 'Home';
+                break;
+            case '/order':
+                pageElement = document.createElement('h1');
+                pageElement.textContent = 'Order';
+                break;
+        }
+
+        if (pageElement) {
+            $('main').children.length && $('main').children[0].remove();
+            $('main').appendChild(pageElement);
+        }
     }
 }
 
 export function loadRouter() {
-    app.store = Router.init()
-}
-
-export function goTo(path, addToHistory) {
-    app.store = Router.go(path, addToHistory)
+    Router.init()
 }
 
 export default Router;

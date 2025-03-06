@@ -8,7 +8,7 @@ window.app = {}
 app.store = Store
 app.store = Router
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
     loadData()
     loadRouter()
 })
