@@ -51,5 +51,4 @@ logo.addEventListener('click', (event) => {
 // Use shorthand method to query elements and add event listeners
 $('nav a').on('click', (event) => {
     event.preventDefault();
-    console.log('Clicked on a link')
 })
