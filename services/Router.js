@@ -9,7 +9,10 @@ import { $, $$ } from '../helpers.js';
 // });
 
 const Router = {
-    init: () => {
+    routes: [],
+    init: (routes) => {
+        Router.routes = routes
+
         $$('a.navlink').forEach((link) => {
             link.on('click', (event) => {
                 event.preventDefault();
@@ -37,37 +40,43 @@ const Router = {
             history.pushState({ route }, null, route);
         }
 
-        let pageElement = null
-        switch (route) {
-            case '/':
-                pageElement = document.createElement('h1');
-                pageElement.textContent = 'Home';
-                break;
-            case '/order':
-                pageElement = document.createElement('h1');
-                pageElement.textContent = 'Order';
-                break;
-            default:
-                if (route.startsWith('/product-')) {
-                    pageElement = document.createElement('h1');
-                    pageElement.textContent = 'Product';
-                    const paramId = route.substring(route.lastIndexOf('-') + 1);
-                    pageElement.dataset.id = paramId
-                } else {
-                    pageElement = document.createElement('h1');
-                    pageElement.textContent = '404';
-                }
-        }
+        // Find the route that matches the URL
+        const matchRoute = Router.routes.find((r) => r.path.test(route));
+        const pageElement = matchRoute ? matchRoute.component(route) : Router.notFountComponent();
 
         if (pageElement) {
             $('main').children.length && $('main').children[0].remove();
             $('main').appendChild(pageElement);
         }
+    },
+    notFountComponent: () => {
+        const pageElement = document.createElement('h1');
+        pageElement.textContent = '404';
+        return pageElement
     }
 }
 
-export function loadRouter() {
-    Router.init()
+export const routes = [
+    {path: /^\/$/, component: () => {
+        const pageElement = document.createElement('h1');
+        pageElement.textContent = 'Home';
+        return pageElement
+    }},
+    {path: /^\/order$/, component: () => {
+        const pageElement = document.createElement('h1');
+        pageElement.textContent = 'Order';
+        return pageElement
+    }},
+    {path: /^\/product-(\d+)$/, component: (route) => {
+        const pageElement = document.createElement('h1');
+        pageElement.textContent = 'Product';
+        pageElement.dataset.id = route.match(/\d+/)[0];
+        return pageElement
+    }},
+]
+
+export function loadRouter(routes) {
+    Router.init(routes)
 }
 
 export default Router;
