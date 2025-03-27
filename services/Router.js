@@ -1,4 +1,5 @@
 import { $, $$ } from '../helpers.js';
+import '../customElements.js'
 
 // pushing a new URL; the second argument is unused
 // history.pushState(optionalState, null, '/new-url');
@@ -58,13 +59,11 @@ const Router = {
 
 export const routes = [
     {path: /^\/$/, component: () => {
-        const pageElement = document.createElement('h1');
-        pageElement.textContent = 'Home';
+        const pageElement = document.createElement('home-page');
         return pageElement
     }},
     {path: /^\/order$/, component: () => {
-        const pageElement = document.createElement('h1');
-        pageElement.textContent = 'Order';
+        const pageElement = document.createElement('order-page');
         return pageElement
     }},
     {path: /^\/product-(\d+)$/, component: (route) => {
