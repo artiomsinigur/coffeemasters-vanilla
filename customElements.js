@@ -52,7 +52,16 @@ class OrderPage extends HTMLElement {
         console.log('Order Page Disconnected')
     }
 }
+class ProductTemplate extends HTMLElement {
+    connectedCallback() {
+        const template = document.getElementById('product-item-template')
+        const content = template.content.cloneNode(true)
+        this.appendChild(content)
+        console.log('Product template')
+    }
+}
 
 customElements.define('home-page', HomePage)
 customElements.define('order-page', OrderPage)
 customElements.define('my-element', MyElement)
+customElements.define('product-item-template', ProductTemplate)
