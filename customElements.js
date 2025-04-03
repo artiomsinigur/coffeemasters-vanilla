@@ -52,11 +52,24 @@ class OrderPage extends HTMLElement {
         console.log('Order Page Disconnected')
     }
 }
+
 class ProductTemplate extends HTMLElement {
+    constructor() {
+        super()
+        // Create a shadow DOM root for the custom element
+        // This allows for encapsulation of styles and markup. A private, isolated DOM tree
+        // that is separate from the main document DOM tree.
+        // By default the shadow DOM is closed, meaning it cannot be accessed from outside the element.
+        // By default, CSS styles declared in the main DOM are not applied to the shadow DOM.
+        // There are new pseudo-elements that allow you to style the shadow DOM from the main DOM.
+        // See: https://developer.mozilla.org/en-US/docs/Web/CSS/::part 
+        this.root = this.attachShadow({ mode: 'open' })
+    }
+
     connectedCallback() {
         const template = document.getElementById('product-item-template')
         const content = template.content.cloneNode(true)
-        this.appendChild(content)
+        this.root.appendChild(content)
         console.log('Product template')
     }
 }
