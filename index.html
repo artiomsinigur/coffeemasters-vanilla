@@ -33,11 +33,16 @@
     </header>
 
     <my-element data-language="fr">Hello</my-element>
-    <product-item-template></product-item-template>
+    <product-item-template>
+        <h2 slot="product-title">First product</h2>
+        <span slot="product-price">$5.00</span>
+        <p>Some paragraph here</p>
+    </product-item-template>
     
     <main>
     </main>
 
+    <!-- Templates -->
     <template id="menu-page-template">
         <section>
             <ul id="menu"></ul>
@@ -51,12 +56,16 @@
             }
         </style>
         <article>
-                <h1>Product Card</h1>
-                <img>
+            <a>
+                <!-- Define slot with some default text-->
+                <!-- Name attribute should be unique per shadow root -->
+                <h2><slot name="product-title">Product Card</slot></h2>
                 <section>
                     <div>
-                        <h4></h4>
-                        <p class="price"><p>
+                        <h3 class="category"><slot name="product-category">Category</slot></h3>
+                        <span class="price"><slot name="product-price">$10.00</slot><span>
+                        <!-- Elements with no slot attributes are assigned to the slot with no name (default slot) -->
+                        <slot></slot>
                     </div>
                     <button>Add</button>
                 </section>
