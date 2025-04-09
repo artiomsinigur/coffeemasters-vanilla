@@ -67,7 +67,7 @@ export const routes = [
         return pageElement
     }},
     {path: /^\/product-(\d+)$/, component: (route) => {
-        const pageElement = document.createElement('h1');
+        const pageElement = document.createElement('details-page');
         pageElement.textContent = 'Product';
         pageElement.dataset.id = route.match(/\d+/)[0];
         return pageElement

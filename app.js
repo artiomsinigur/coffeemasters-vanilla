@@ -3,6 +3,9 @@ import { loadData } from './services/Menu.js';
 import Store, { ACCORDION } from './services/Store.js';
 import Router, { loadRouter, routes } from './services/Router.js';
 
+// Link to the custom elements/components
+import './components/index.js';
+
 // Set up the app object
 window.app = {}
 app.store = Store

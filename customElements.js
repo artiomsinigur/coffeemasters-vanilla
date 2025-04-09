@@ -42,17 +42,6 @@ class HomePage extends HTMLElement {
     }
 }
 
-class OrderPage extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `<h1>Order</h1>`
-        console.log('Order Page Connected')
-    }
-
-    disconnectedCallback() {
-        console.log('Order Page Disconnected')
-    }
-}
-
 class ProductTemplate extends HTMLElement {
     constructor() {
         super()
@@ -96,7 +85,6 @@ class Accordion extends HTMLElement {
 }
 
 customElements.define('home-page', HomePage)
-customElements.define('order-page', OrderPage)
 customElements.define('my-element', MyElement)
 customElements.define('product-item-template', ProductTemplate)
 // 5. Register the custom element
