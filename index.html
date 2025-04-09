@@ -33,16 +33,50 @@
     </header>
 
     <my-element data-language="fr">Hello</my-element>
+
     <product-item-template>
         <h2 slot="product-title">First product</h2>
         <span slot="product-price">$5.00</span>
         <p>Some paragraph here</p>
     </product-item-template>
-    
+
     <main>
     </main>
 
     <!-- Templates -->
+    <!-- 1. Define a reusable template -->
+    <template id="accordion-template">
+        <style>
+            details {
+                border: 1px solid #aaa;
+                border-radius: 4px;
+                padding: 0.5em 0.5em 0;
+            }
+
+            summary {
+                font-weight: bold;
+                margin: -0.5em -0.5em 0;
+                padding: 0.5em;
+            }
+
+            details[open] {
+                padding: 0.5em;
+            }
+
+            details[open] summary {
+                border-bottom: 1px solid #aaa;
+                margin-bottom: 0.5em;
+            }
+        </style>
+        <details class="accordion">
+            <summary class="accordion-title"><slot name="accordion-title">Title</slot></summary>
+            <div class="accordion-content">
+                <slot name="accordion-content">Accordion content</slot>
+                <button class="accordion-details"><slot name="accordion-details">Details</slot></button>
+            </div>
+        </details>
+    </template>
+
     <template id="menu-page-template">
         <section>
             <ul id="menu"></ul>

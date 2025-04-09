@@ -74,7 +74,30 @@ class ProductTemplate extends HTMLElement {
     }
 }
 
+// 2. Define a custom element class
+class Accordion extends HTMLElement {
+    constructor() {
+        super()
+        // 3. Attach shadow DOM
+        this.root = this.attachShadow({ mode: 'open' })
+        // 4. Clone template content and append to shadow DOM
+        const template = document.getElementById('accordion-template')
+        const content = template.content.cloneNode(true)    
+        this.root.appendChild(content)
+    }
+    
+    connectedCallback() {
+        const accordionDetails = this.root.querySelector('.accordion-details')
+        const url = this.getAttribute('url')
+        accordionDetails.addEventListener('click', () => {
+            console.log(url)
+        })
+    }
+}
+
 customElements.define('home-page', HomePage)
 customElements.define('order-page', OrderPage)
 customElements.define('my-element', MyElement)
 customElements.define('product-item-template', ProductTemplate)
+// 5. Register the custom element
+customElements.define('accordion-template', Accordion)
