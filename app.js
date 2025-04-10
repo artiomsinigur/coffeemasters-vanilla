@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // 6. Create and insert the custom element using JS
     ACCORDION.forEach(acc => {
-        const accordion = document.createElement('accordion-template')
+        const accordion = document.createElement('accordion-item')
         accordion.setAttribute('url', acc.details)
         const slots = `
             <span slot="accordion-title">${acc.title}</span>

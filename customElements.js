@@ -31,17 +31,6 @@ class MyElement extends HTMLElement {
     }
 }
 
-class HomePage extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `<h1>Home</h1>`
-        console.log('Home Page Connected')
-    }
-
-    disconnectedCallback() {
-        console.log('Home Page Disconnected')
-    }
-}
-
 class ProductTemplate extends HTMLElement {
     constructor() {
         super()
@@ -56,9 +45,8 @@ class ProductTemplate extends HTMLElement {
     }
 
     connectedCallback() {
-        const template = document.getElementById('product-item-template')
-        const content = template.content.cloneNode(true)
-        this.root.appendChild(content)
+        const templateContent = document.getElementById('product-item-template').content
+        this.root.appendChild(templateContent.cloneNode(true))
         console.log('Product template')
     }
 }
@@ -70,7 +58,7 @@ class Accordion extends HTMLElement {
         // 3. Attach shadow DOM
         this.root = this.attachShadow({ mode: 'open' })
         // 4. Clone template content and append to shadow DOM
-        const template = document.getElementById('accordion-template')
+        const template = document.getElementById('accordion-item-template')
         const content = template.content.cloneNode(true)    
         this.root.appendChild(content)
     }
@@ -84,8 +72,7 @@ class Accordion extends HTMLElement {
     }
 }
 
-customElements.define('home-page', HomePage)
 customElements.define('my-element', MyElement)
-customElements.define('product-item-template', ProductTemplate)
+customElements.define('product-item', ProductTemplate)
 // 5. Register the custom element
-customElements.define('accordion-template', Accordion)
+customElements.define('accordion-item', Accordion)

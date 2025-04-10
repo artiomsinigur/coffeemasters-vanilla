@@ -59,7 +59,7 @@ const Router = {
 
 export const routes = [
     {path: /^\/$/, component: () => {
-        const pageElement = document.createElement('home-page');
+        const pageElement = document.createElement('menu-page');
         return pageElement
     }},
     {path: /^\/order$/, component: () => {

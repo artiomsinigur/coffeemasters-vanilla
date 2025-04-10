@@ -34,18 +34,18 @@
 
     <my-element data-language="fr">Hello</my-element>
 
-    <product-item-template>
-        <h2 slot="product-title">First product</h2>
+    <product-item>
+        <span slot="product-title">First product</span>
         <span slot="product-price">$5.00</span>
         <p>Some paragraph here</p>
-    </product-item-template>
+    </product-item>
 
     <main>
     </main>
 
     <!-- Templates -->
     <!-- 1. Define a reusable template -->
-    <template id="accordion-template">
+    <template id="accordion-item-template">
         <style>
             details {
                 border: 1px solid #aaa;
@@ -78,6 +78,7 @@
     </template>
 
     <template id="menu-page-template">
+        <h1>Menu Page</h1>
         <section>
             <ul id="menu"></ul>
         </section>
@@ -85,7 +86,7 @@
 
     <template id="product-item-template">
         <style>
-            h1 {
+            h2 {
                 color: red;
             }
         </style>
@@ -94,6 +95,7 @@
                 <!-- Define slot with some default text-->
                 <!-- Name attribute should be unique per shadow root -->
                 <h2><slot name="product-title">Product Card</slot></h2>
+            </a>
                 <section>
                     <div>
                         <h3 class="category"><slot name="product-category">Category</slot></h3>
@@ -103,7 +105,6 @@
                     </div>
                     <button>Add</button>
                 </section>
-            </a>
         </article>
     </template>
 
