@@ -1,6 +1,6 @@
 import { $, $$ } from './helpers.js';
 import { loadData } from './services/Menu.js';
-import Store, { ACCORDION } from './services/Store.js';
+import Store, { ACCORDION, initStore } from './services/Store.js';
 import Router, { loadRouter, routes } from './services/Router.js';
 
 // Link to the custom elements/components
@@ -14,6 +14,7 @@ app.store = Router
 window.addEventListener('DOMContentLoaded', () => {
     loadData()
     loadRouter(routes)
+    initStore()
 
     // 6. Create and insert the custom element using JS
     ACCORDION.forEach(acc => {
